@@ -266,43 +266,6 @@ All API endpoints are defined in `src/utils/constants.ts`:
 - **ui**: UI state (sidebar, modals, notifications, theme)
 - **api**: RTK Query cache and loading states
 
-### Using Redux in Components
-
-```typescript
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
-import { logout } from '@/store/slices/authSlice';
-
-function MyComponent() {
-  const { user, isAuthenticated } = useAppSelector(state => state.auth);
-  const dispatch = useAppDispatch();
-  
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-  
-  return <div>Welcome, {user?.firstName}</div>;
-}
-```
-
-### Using RTK Query
-
-```typescript
-import { useGetFilesQuery, useDeleteFileMutation } from '@/store/api/filesApi';
-
-function FilesList() {
-  const { data, isLoading, error } = useGetFilesQuery({ page: 1, limit: 20 });
-  const [deleteFile] = useDeleteFileMutation();
-  
-  const handleDelete = async (fileId: string) => {
-    await deleteFile(fileId).unwrap();
-  };
-  
-  if (isLoading) return <div>Loading...</div>;
-  
-  return <div>{/* Render files */}</div>;
-}
-```
-
 ## 📚 Documentation
 
 - [`FMS_ACTION_PLAN.md`](./FMS_ACTION_PLAN.md) - Complete implementation roadmap
@@ -348,19 +311,6 @@ The admin dashboard provides comprehensive tools for system management:
 - 🔴 **Red**: Critical usage (> 90%)
 
 For detailed information, see [`ADMIN_DASHBOARD_GUIDE.md`](./ADMIN_DASHBOARD_GUIDE.md)
-
-## 📋 Next Steps
-
-1. ✅ ~~Build authentication pages (Login, Signup)~~
-2. ✅ ~~Implement protected routes~~
-3. ✅ ~~Create layout components (Header, Sidebar)~~
-4. ✅ ~~Build user dashboard with file management~~
-5. ✅ ~~Implement admin dashboard~~
-6. Create custom hooks (`useAuth`, `useFileUpload`, etc.)
-7. Add comprehensive error handling
-8. Implement file sharing features
-9. Add email notifications
-10. Write tests and documentation
 
 ## 📄 License
 
